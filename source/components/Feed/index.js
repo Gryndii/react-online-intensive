@@ -14,7 +14,9 @@ class Feed extends Component{
         const {avatar, currentUserFirstName, currentUserLastName} = this.props;
         return(
             <section className={Styles.feed}>
-                <StatusBar/>
+                <StatusBar
+                    {...this.props}
+                />
                 <Composer
                     avatar={avatar}
                     currentUserFirstName={currentUserFirstName}
