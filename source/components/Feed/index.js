@@ -16,17 +16,19 @@ class Feed extends Component{
             {id: 123, comment: 'Hi there!', created: 1560319902},
             {id: 124, comment: 'Yo', created: 1560319900}
         ],
+        isSpinning: true,
     };
 
     render() {
-        const { posts } = this.state;
+        const { posts, isSpinning } = this.state;
+
         const postsJSX = posts.map((post) => {
             return <Post key={post.id} {...post}/>
         });
 
         return(
             <section className={Styles.feed}>
-                <Spinner isSpinning />
+                <Spinner isSpinning={isSpinning} />
                 <StatusBar/>
                 <Composer/>
                 {postsJSX}
