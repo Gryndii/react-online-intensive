@@ -41,6 +41,7 @@ class Feed extends Component{
             id: getUniqueID(),
             comment,
             created: moment().unix(),
+            likes: [],
         };
 
         await delay(1200);

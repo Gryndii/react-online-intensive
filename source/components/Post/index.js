@@ -25,6 +25,7 @@ class Post extends Component{
             <Consumer>
                 {(context) => (
                     <section className={Styles.post}>
+                        <span className={Styles.cross}></span>
                         <img src={context.avatar} alt=""/>
                         <a>
                             {context.currentUserFirstName}
