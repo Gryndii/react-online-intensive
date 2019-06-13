@@ -52,6 +52,14 @@ class Feed extends Component{
         }));
     };
 
+    _deletePost = (id) => {
+        const {posts} = this.state;
+        const newPosts = posts.filter((post) => {
+            return post.id !== id;
+        });
+        this.setState({posts: newPosts});
+    };
+
     _likePost = async (id) => {
         const {currentUserFirstName, currentUserLastName} = this.props;
         this._setPostsFetchingState(true);
@@ -84,7 +92,13 @@ class Feed extends Component{
         const { posts, isFetching } = this.state;
 
         const postsJSX = posts.map((post) => {
-            return <Post key={post.id} {...post} _likePost={this._likePost}/>
+            return (
+                <Post key={post.id}
+                      {...post}
+                      _likePost={this._likePost}
+                      _deletePost ={this._deletePost}
+                />
+            );
         });
 
         return(
