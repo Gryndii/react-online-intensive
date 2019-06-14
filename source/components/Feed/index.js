@@ -52,12 +52,12 @@ class Feed extends Component{
         }));
     };
 
-    _deletePost = (id) => {
-        const {posts} = this.state;
-        const newPosts = posts.filter((post) => {
-            return post.id !== id;
+    _removePost = (id) => {
+        this.setState(({posts}) => {
+            return {
+                posts: posts.filter(post => post.id !== id)
+            }
         });
-        this.setState({posts: newPosts});
     };
 
     _likePost = async (id) => {
@@ -96,7 +96,7 @@ class Feed extends Component{
                 <Post key={post.id}
                       {...post}
                       _likePost={this._likePost}
-                      _deletePost ={this._deletePost}
+                      _removePost ={this._removePost}
                 />
             );
         });
