@@ -2,15 +2,16 @@
 import React, {Component} from 'react';
 
 //Components
+import {withProfile} from "components/HOC/withProfile";
 import Like from 'components/Like';
-import {Consumer} from 'components/HOC/withProfile';
 
 //Instruments
 import moment from 'moment';
 import Styles from './styles.m.css';
 import {func, string, number, array} from 'prop-types';
 
-class Post extends Component{
+@withProfile
+export default class Post extends Component{
     static propTypes = {
         comment: string.isRequired,
         created: number.isRequired,
@@ -20,29 +21,26 @@ class Post extends Component{
     };
 
     render() {
-        const {comment, created, _likePost, id, likes, _removePost} = this.props;
+        const {
+            comment, created, _likePost, id, likes, _removePost,
+            currentUserFirstName, currentUserLastName, avatar
+        } = this.props;
         return(
-            <Consumer>
-                {(context) => (
-                    <section className={Styles.post}>
+            <section className={Styles.post}>
                         <span
                             className={Styles.cross}
                             onClick={()=>{_removePost(id)}}
                         >
                         </span>
-                        <img src={context.avatar} alt=""/>
-                        <a>
-                            {context.currentUserFirstName}
-                            {context.currentUserLastName}
-                        </a>
-                        <time>{moment.unix(created).format('MMMM D h:mm:ss a')}</time>
-                        <p>{comment}</p>
-                        <Like _likePost={_likePost} id={id} likes={likes}/>
-                    </section>
-                )}
-            </Consumer>
+                <img src={avatar} alt=""/>
+                <a>
+                    {currentUserFirstName}
+                    {currentUserLastName}
+                </a>
+                <time>{moment.unix(created).format('MMMM D h:mm:ss a')}</time>
+                <p>{comment}</p>
+                <Like _likePost={_likePost} id={id} likes={likes}/>
+            </section>
         );
     }
 }
-
-export default Post;
