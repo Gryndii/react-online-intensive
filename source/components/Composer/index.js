@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 //Components
-import {Consumer} from 'components/HOC/withProfile';
+import {withProfile} from 'components/HOC/withProfile';
 
 //Instruments
 import Styles from './styles.m.css';
@@ -48,26 +48,23 @@ class Composer extends Component{
 
     render() {
         const {comment} = this.state;
+        const {avatar, currentUserFirstName} = this.props;
         return(
-            <Consumer>
-                {(context) => (
-                    <section className={Styles.composer}>
-                        <img src={context.avatar} alt=""/>
-                        <form onSubmit={this._handleFormSubmit}>
+            <section className={Styles.composer}>
+                <img src={avatar} alt=""/>
+                <form onSubmit={this._handleFormSubmit}>
                             <textarea name="" id="" cols="30" rows="10"
-                                placeholder={`Whats on your mind, ${context.currentUserFirstName}?`}
-                                onChange={this._getComment}
-                                onKeyDown={this._submitOnEnter}
-                                value={comment}
+                                      placeholder={`Whats on your mind, ${currentUserFirstName}?`}
+                                      onChange={this._getComment}
+                                      onKeyDown={this._submitOnEnter}
+                                      value={comment}
                             >
                             </textarea>
-                            <input type="submit" value="Post"/>
-                        </form>
-                    </section>
-                )}
-            </Consumer>
+                    <input type="submit" value="Post"/>
+                </form>
+            </section>
         );
     }
 }
 
-export default Composer;
+export default withProfile(Composer);

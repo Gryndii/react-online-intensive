@@ -9,7 +9,6 @@ import {Provider} from 'components/HOC/withProfile';
 //Instruments
 import avatar from 'theme/assets/lisa';
 
-
 const options = {
     avatar: avatar,
     currentUserFirstName: 'Lisa',
@@ -21,7 +20,7 @@ export default class App extends Component {
     render() {
         return (
             <Provider value={options}>
-                <Feed {...options} />
+                <Feed/>
             </Provider>
         );
     }

@@ -3,9 +3,13 @@ import React, {Component} from 'react';
 import {string, func, arrayOf, shape} from 'prop-types';
 import cx from 'classnames';
 
+//Components
+import {withProfile} from 'components/HOC/withProfile';
+
 //Instruments
 import Styles from './styles.m.css';
 
+@withProfile
 export default class Like extends Component {
     static propTypes = {
         _likePost: func.isRequired,

@@ -37,7 +37,7 @@ class Post extends Component{
                         </a>
                         <time>{moment.unix(created).format('MMMM D h:mm:ss a')}</time>
                         <p>{comment}</p>
-                        <Like _likePost={_likePost} id={id} likes={likes} {...context} />
+                        <Like _likePost={_likePost} id={id} likes={likes}/>
                     </section>
                 )}
             </Consumer>
