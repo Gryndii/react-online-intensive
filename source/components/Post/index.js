@@ -23,7 +23,7 @@ export default class Post extends Component{
     render() {
         const {
             comment, created, _likePost, id, likes, _removePost,
-            currentUserFirstName, currentUserLastName, avatar
+            firstName, lastName, avatar
         } = this.props;
         return(
             <section className={Styles.post}>
@@ -34,8 +34,8 @@ export default class Post extends Component{
                         </span>
                 <img src={avatar} alt=""/>
                 <a>
-                    {currentUserFirstName}
-                    {currentUserLastName}
+                    {firstName}
+                    {lastName}
                 </a>
                 <time>{moment.unix(created).format('MMMM D h:mm:ss a')}</time>
                 <p>{comment}</p>
