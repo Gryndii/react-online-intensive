@@ -41,7 +41,7 @@ export default class Like extends Component {
 
     _likePost = () => {
         const {_likePost, id} = this.props;
-
+        console.log('like id', id);
         _likePost(id);
     };
 
@@ -79,12 +79,14 @@ export default class Like extends Component {
         const likedByMe = this._getLikedByMe();
 
         if(likes.length === 1 && likedByMe) {
-            return `${currentUserFirstName} ${currentUserLastName}`
-        } else if(likes.length === 2 && likedByMe) {
-            return `You and ${liked.length - 1} other`
-        } else {
-            return 0;
+            return `${currentUserFirstName} ${currentUserLastName}`;
+        } else if (likes.length === 2 && likedByMe) {
+            return `You and ${likes.length - 1} other`;
+        } else if (likedByMe) {
+            return `You and ${likes.length - 1} others`;
         }
+
+        return (likes.length);
     };
 
     render() {

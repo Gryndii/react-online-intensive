@@ -7,12 +7,12 @@ import Feed from 'components/Feed/';
 import {Provider} from 'components/HOC/withProfile';
 
 //Instruments
-import avatar from 'theme/assets/lisa';
+import avatar from 'theme/assets/avatar';
 
 const options = {
     avatar: avatar,
-    currentUserFirstName: 'Lisa',
-    currentUserLastName: 'Simpson',
+    currentUserFirstName: 'Роман',
+    currentUserLastName: 'Гриндий',
 };
 
 @hot(module)
