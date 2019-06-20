@@ -30,7 +30,9 @@ export default class Feed extends Component{
         socket.on('create', (postJSON) => {
             const {data: newPost, meta} = JSON.parse(postJSON);
 
-            if(`${currentUserFirstName} ${currentUserLastName}` !== `${meta.authorFirstName} ${meta.authorLastName}`) {
+            if(`${currentUserFirstName} ${currentUserLastName}` !==
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
                 this.setState(({posts}) => {
                     return {
                         posts: [newPost, ...posts]
@@ -42,10 +44,28 @@ export default class Feed extends Component{
         socket.on('remove', (postJSON) => {
             const {data: removedPost, meta} = JSON.parse(postJSON);
 
-            if(`${currentUserFirstName} ${currentUserLastName}` !== `${meta.authorFirstName} ${meta.authorLastName}`) {
+            if(`${currentUserFirstName} ${currentUserLastName}` !==
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
                 this.setState(({posts}) => {
                     return {
                         posts: posts.filter(post => post.id !== removedPost.id)
+                    }
+                });
+            }
+        });
+
+        socket.on('like', (likeJSON) => {
+            const {data: likedPost, meta} = JSON.parse(likeJSON);
+
+            if(`${currentUserFirstName} ${currentUserLastName}` !==
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
+                this.setState(({posts}) => {
+                    return {
+                        posts: posts.map((post) => {
+                            post.id === likedPost.id ? likedPost : post;
+                        }),
                     }
                 });
             }
@@ -55,6 +75,7 @@ export default class Feed extends Component{
     componentWillUnmount() {
         socket.removeListener('create');
         socket.removeListener('remove');
+        socket.removeListener('like');
     }
 
     _setPostsFetchingState = (state) => {
