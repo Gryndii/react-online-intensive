@@ -23,6 +23,8 @@ export default class Feed extends Component{
     };
 
     componentDidMount() {
+        const {currentUserFirstName, currentUserLastName} = this.props;
+
         this._fetchPosts();
 
         socket.emit('join', GROUP_ID);
@@ -64,7 +66,7 @@ export default class Feed extends Component{
                 this.setState(({posts}) => {
                     return {
                         posts: posts.map((post) => {
-                            post.id === likedPost.id ? likedPost : post;
+                            post.id === likedPost ? likedPost : post;
                         }),
                     }
                 });
