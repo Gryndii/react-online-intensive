@@ -21,7 +21,7 @@ export default class Post extends Component{
     };
 
     _getCross = () => {
-        const {currentUserFirstName, currentUserLastName, firstName, lastName} = this.props;
+        const {currentUserFirstName, currentUserLastName, firstName, lastName, id, _removePost} = this.props;
 
         return `${currentUserFirstName} ${currentUserLastName}` === `${firstName} ${lastName}`
             ? <span className={Styles.cross} onClick={()=>{_removePost(id)}}></span>
@@ -30,7 +30,7 @@ export default class Post extends Component{
 
     render() {
         const {
-            comment, created, _likePost, id, likes, _removePost,
+            comment, created, _likePost, id, likes,
             firstName, lastName, avatar
         } = this.props;
 
