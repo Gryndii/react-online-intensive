@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "classnames": "2.2.6",
+        "formik": "^1.5.7",
         "gsap": "1.20.2",
         "react": "16.5.2",
         "react-dom": "16.5.2",
@@ -83,12 +84,14 @@
         "redux-saga-test-plan": "3.7.0",
         "serve": "10.1.1",
         "style-loader": "0.23.1",
+        "styled-components": "^4.3.2",
         "stylelint": "9.10.1",
         "webpack": "4.29.0",
         "webpack-bundle-analyzer": "3.0.3",
         "webpack-dev-server": "3.1.14",
         "webpack-dev-server-waitpage": "1.0.0",
         "webpack-hot-middleware": "2.24.3",
-        "webpack-merge": "4.2.1"
+        "webpack-merge": "4.2.1",
+        "yup": "^0.27.0"
     }
 }

@@ -1,0 +1,27 @@
+.signInForm {
+    display: flex;
+    flex-direction: column;
+
+    & input {
+        margin-bottom: 15px;
+    }
+
+    & label {
+        margin-bottom: 10px;
+    }
+}
+
+.input {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    transition: .25s ease-in-out;
+}
+
+.inputError {
+    border-color: #f43e27;
+}
+
+.inputSuccess {
+    border-color: #1a8833;
+}
