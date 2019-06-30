@@ -16,6 +16,7 @@ export default class Post extends Component{
         comment: string.isRequired,
         created: number.isRequired,
         _likePost: func.isRequired,
+        _removePost: func.isRequired,
         id: string.isRequired,
         likes: array.isRequired,
     };
