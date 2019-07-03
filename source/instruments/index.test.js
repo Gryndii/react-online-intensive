@@ -39,6 +39,10 @@ describe('Instruments:', () => {
         expect(getUniqueID(6)).toHaveLength(6);
     });
 
+    test('Expected that call of getUniqueID without arguments returns string of default 15 length', () => {
+        expect(getUniqueID()).toHaveLength(15);
+    });
+
 
     test('Expected that getFullApiUrl to be a function', () => {
         expect(typeof getFullApiUrl).toBe('function');
