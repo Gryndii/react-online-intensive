@@ -45,7 +45,7 @@ export class Composer extends Component{
         if(isEnter) {
             e.preventDefault();
             this._submitComment();
-        };
+        }
     };
 
     render() {

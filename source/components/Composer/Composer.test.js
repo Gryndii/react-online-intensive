@@ -6,6 +6,8 @@ import {Composer} from './';
 
 const props = {
     _createPost: jest.fn(),
+    avatar: 'avatarSrcMock',
+    currentUserFirstName: 'firstNameMock',
 };
 
 const comment = 'Mocks';
@@ -22,6 +24,8 @@ const result = mount(<Composer {...props} />);
 
 const _submitCommentSpy = jest.spyOn(result.instance(), '_submitComment');
 const _handleFormSubmitSpy = jest.spyOn(result.instance(), '_handleFormSubmit');
+const _getCommentSpy = jest.spyOn(result.instance(), '_getComment');
+const _submitOnEnterSpy = jest.spyOn(result.instance(), '_submitOnEnter');
 
 describe('Composer component:', () => {
     test('Composer should have one "section" element', () => {
@@ -44,7 +48,6 @@ describe('Composer component:', () => {
         expect(result.find('img')).toHaveLength(1);
     });
 
-    //Problem with this one, why initial state in Composer is comment:null?
     test('Composer should have comment: "" initial state', () => {
         expect(result.state()).toEqual(initialState);
     });
@@ -88,9 +91,30 @@ describe('Composer component:', () => {
         expect(props._createPost).toHaveBeenCalledTimes(1);
     });
 
-    test('_submitComment and _handleFormSubmit class methods should be envoked once after form is submitted', () => {
+    test('_submitComment and _handleFormSubmit class methods should be evoked once after form is submitted', () => {
         expect(_submitCommentSpy).toHaveBeenCalledTimes(1);
         expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    //Hw
+    test('Composers img should have correct avatar', () => {
+        expect(result.find('img').prop('src')).toBe(props.avatar);
+    });
+
+    test('Composers textarea placeholder should be correct', () => {
+        expect(result.find('textarea').prop('placeholder')).toBe(`Whats on your mind, ${props.currentUserFirstName}?`);
+    });
+
+    test('_getComment should be evoked once after textarea value is changed', () => {
+        expect(_getCommentSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test('Expected _submitOnEnterSpy should be called after keypress Enter', () => {
+        result.find('textarea').simulate('keydown', {
+           key: 'Enter',
+        });
+
+        expect(_submitOnEnterSpy).toHaveBeenCalledTimes(1);
     });
 });
 
