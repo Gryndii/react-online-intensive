@@ -43,7 +43,7 @@ export default class StatusBar extends Component{
     };
 
     render() {
-        const {avatar, currentUserFirstName} = this.props;
+        const {avatar, currentUserFirstName, isAuthorized, _toggleAuthorization} = this.props;
         const {online} = this.state;
         const statusStyle = cx(Styles.status, {
             [Styles.online]: online,
@@ -70,6 +70,9 @@ export default class StatusBar extends Component{
                     <Link to='/feed'>
                         Feed
                     </Link>
+                    <button onClick={_toggleAuthorization}>
+                        {isAuthorized ? 'Logout' : 'Login'}
+                    </button>
                 </section>
             </Transition>
         );

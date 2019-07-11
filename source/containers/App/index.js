@@ -7,6 +7,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 //Components
 import Feed from 'components/Feed/';
 import Profile from 'components/Profile/';
+import Login from 'components/Login';
 import {Provider} from 'components/HOC/withProfile';
 import StatusBar from 'components/StatusBar';
 
@@ -21,13 +22,28 @@ const options = {
 
 @hot(module)
 export default class App extends Component {
+    state = {
+        isAuthorized: localStorage.getItem('facebookIsAuthorized') !== null
+            ? JSON.parse(localStorage.getItem('facebookIsAuthorized'))
+            : false,
+    };
+
+    _toggleAuthorization = () => {
+        this.setState(({isAuthorized}) => ({
+            isAuthorized: !isAuthorized,
+        }), () => {
+            localStorage.setItem('facebookIsAuthorized', this.state.isAuthorized);
+        });
+    };
+
     render() {
         return (
-            <Provider value={options}>
+            <Provider value={{...options, ...this.state, _toggleAuthorization: this._toggleAuthorization}}>
                 <StatusBar/>
                 <Switch>
                     <Route component={Feed} path='/feed' />
                     <Route component={Profile} path='/profile' />
+                    <Route component={Login} path='/login' />
                     <Redirect to='/feed' />
                 </Switch>
             </Provider>
